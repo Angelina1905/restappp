@@ -1,0 +1,738 @@
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "norests"[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "norests" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "content" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "content" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar, "image" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20221221201249)[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20221221193446),
+(20221221193841),
+(20221221194142),
+(20221221195841),
+(20221221200236);
+
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2022-12-22 12:18:36.796636"], ["updated_at", "2022-12-22 12:18:36.796636"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "aaeba7d3576a5073693aa193c200cda52856a2e9"], ["created_at", "2022-12-22 12:18:36.800298"], ["updated_at", "2022-12-22 12:18:36.800298"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserRefToPosts (20221221202054)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aposts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "aposts" ("id","name","title","content","created_at","updated_at","author","image")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image" FROM "posts"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "posts" ("id","name","title","content","created_at","updated_at","author","image")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image" FROM "aposts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aposts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aposts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_user_id" ON "aposts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aposts" ("id","name","title","content","created_at","updated_at","author","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id" FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "posts" ("id","name","title","content","created_at","updated_at","author","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id" FROM "aposts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aposts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221221202054"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserRefToNorests (20221221202119)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "anorests" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar DEFAULT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "anorests" ("id","name","title","content","created_at","updated_at","image")
+                     SELECT "id","name","title","content","created_at","updated_at","image" FROM "norests"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "norests"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "norests" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "norests" ("id","name","title","content","created_at","updated_at","image")
+                     SELECT "id","name","title","content","created_at","updated_at","image" FROM "anorests"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "anorests"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_norests_on_user_id" ON "norests" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "anorests" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_anorests_on_user_id" ON "anorests" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "anorests" ("id","name","title","content","created_at","updated_at","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","image","user_id" FROM "norests"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "norests"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "norests" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_ee78626838"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_norests_on_user_id" ON "norests" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "norests" ("id","name","title","content","created_at","updated_at","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","image","user_id" FROM "anorests"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "anorests"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221221202119"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUsernameToUser (20221221202827)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "username" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221221202827"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCkeditorAssets (20221221203430)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ckeditor_assets" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "data_file_name" varchar NOT NULL, "data_content_type" varchar, "data_file_size" integer, "type" varchar(30), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_ckeditor_assets_on_type" ON "ckeditor_assets" ("type")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221221203430"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCategories (20221221205230)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "categories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "display_in_navbar" boolean DEFAULT 1, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221221205230"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCategoryToPost (20221221205724)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aposts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_user_id" ON "aposts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aposts" ("id","name","title","content","created_at","updated_at","author","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id" FROM "posts"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, "category_id" integer NOT NULL, CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "posts" ("id","name","title","content","created_at","updated_at","author","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id" FROM "aposts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aposts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aposts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, "category_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_category_id" ON "aposts" ("category_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_user_id" ON "aposts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aposts" ("id","name","title","content","created_at","updated_at","author","image","user_id","category_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id","category_id" FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, "category_id" integer NOT NULL, CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "posts" ("id","name","title","content","created_at","updated_at","author","image","user_id","category_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id","category_id" FROM "aposts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aposts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221221205724"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "categories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "display_in_navbar" boolean DEFAULT 1, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "ckeditor_assets"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ckeditor_assets" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "data_file_name" varchar NOT NULL, "data_content_type" varchar, "data_file_size" integer, "type" varchar(30), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_ckeditor_assets_on_type" ON "ckeditor_assets" ("type")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "norests"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "norests" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "content" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_norests_on_user_id" ON "norests" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "title" varchar, "content" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar, "image" varchar, "user_id" integer NOT NULL, "category_id" integer NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "username" varchar)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "anorests" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_anorests_on_user_id" ON "anorests" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "anorests" ("id","name","title","content","created_at","updated_at","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","image","user_id" FROM "norests"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "norests"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "norests" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, CONSTRAINT "fk_rails_ee78626838"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_norests_on_user_id" ON "norests" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "norests" ("id","name","title","content","created_at","updated_at","image","user_id")
+                     SELECT "id","name","title","content","created_at","updated_at","image","user_id" FROM "anorests"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "anorests"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aposts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, "category_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_user_id" ON "aposts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_category_id" ON "aposts" ("category_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aposts" ("id","name","title","content","created_at","updated_at","author","image","user_id","category_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id","category_id" FROM "posts"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, "category_id" integer NOT NULL, CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "posts" ("id","name","title","content","created_at","updated_at","author","image","user_id","category_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id","category_id" FROM "aposts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aposts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aposts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, "category_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_user_id" ON "aposts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aposts_on_category_id" ON "aposts" ("category_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aposts" ("id","name","title","content","created_at","updated_at","author","image","user_id","category_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id","category_id" FROM "posts"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "title" varchar DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "author" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer NOT NULL, "category_id" integer NOT NULL, CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+, CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "posts" ("id","name","title","content","created_at","updated_at","author","image","user_id","category_id")
+                     SELECT "id","name","title","content","created_at","updated_at","author","image","user_id","category_id" FROM "aposts"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aposts"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20221221205724)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20221221193446),
+(20221221193841),
+(20221221194142),
+(20221221195841),
+(20221221200236),
+(20221221201249),
+(20221221202054),
+(20221221202119),
+(20221221202827),
+(20221221203430),
+(20221221205230);
+
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2022-12-22 12:22:18.732451"], ["updated_at", "2022-12-22 12:22:18.732451"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "bd404dc1fa5880fa65c3b159d56ff17b7d755e1c"], ["created_at", "2022-12-22 12:22:18.735487"], ["updated_at", "2022-12-22 12:22:18.735487"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:18.919886', '2022-12-22 12:22:18.919886');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:18.919886', '2022-12-22 12:22:18.919886');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:18.921385', '2022-12-22 12:22:18.921385');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:18.921385', '2022-12-22 12:22:18.921385');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:18.922191', '2022-12-22 12:22:18.922191');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:18.922191', '2022-12-22 12:22:18.922191');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:18.923036', '2022-12-22 12:22:18.923036');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:18.923036', '2022-12-22 12:22:18.923036')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.093748', '2022-12-22 12:22:19.093748');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.093748', '2022-12-22 12:22:19.093748');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.093794', '2022-12-22 12:22:19.093794');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.093794', '2022-12-22 12:22:19.093794');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.093821', '2022-12-22 12:22:19.093821');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.093821', '2022-12-22 12:22:19.093821');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.093845', '2022-12-22 12:22:19.093845');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.093845', '2022-12-22 12:22:19.093845')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.099182', '2022-12-22 12:22:19.099182');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.099182', '2022-12-22 12:22:19.099182');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.099221', '2022-12-22 12:22:19.099221');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.099221', '2022-12-22 12:22:19.099221');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.099247', '2022-12-22 12:22:19.099247');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.099247', '2022-12-22 12:22:19.099247');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.099270', '2022-12-22 12:22:19.099270');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.099270', '2022-12-22 12:22:19.099270')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.8ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.105985', '2022-12-22 12:22:19.105985');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.105985', '2022-12-22 12:22:19.105985');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.106039', '2022-12-22 12:22:19.106039');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.106039', '2022-12-22 12:22:19.106039');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.106070', '2022-12-22 12:22:19.106070');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.106070', '2022-12-22 12:22:19.106070');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.106097', '2022-12-22 12:22:19.106097');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.106097', '2022-12-22 12:22:19.106097')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.113562', '2022-12-22 12:22:19.113562');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.113562', '2022-12-22 12:22:19.113562');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.113608', '2022-12-22 12:22:19.113608');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.113608', '2022-12-22 12:22:19.113608');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.113639', '2022-12-22 12:22:19.113639');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.113639', '2022-12-22 12:22:19.113639');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.113665', '2022-12-22 12:22:19.113665');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.113665', '2022-12-22 12:22:19.113665')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.119053', '2022-12-22 12:22:19.119053');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.119053', '2022-12-22 12:22:19.119053');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.119094', '2022-12-22 12:22:19.119094');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.119094', '2022-12-22 12:22:19.119094');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.119122', '2022-12-22 12:22:19.119122');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.119122', '2022-12-22 12:22:19.119122');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.119145', '2022-12-22 12:22:19.119145');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.119145', '2022-12-22 12:22:19.119145')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.124247', '2022-12-22 12:22:19.124247');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.124247', '2022-12-22 12:22:19.124247');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.124286', '2022-12-22 12:22:19.124286');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.124286', '2022-12-22 12:22:19.124286');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.124312', '2022-12-22 12:22:19.124312');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.124312', '2022-12-22 12:22:19.124312');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.124334', '2022-12-22 12:22:19.124334');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.124334', '2022-12-22 12:22:19.124334')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.130127', '2022-12-22 12:22:19.130127');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.130127', '2022-12-22 12:22:19.130127');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.130173', '2022-12-22 12:22:19.130173');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.130173', '2022-12-22 12:22:19.130173');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.130201', '2022-12-22 12:22:19.130201');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.130201', '2022-12-22 12:22:19.130201');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.130226', '2022-12-22 12:22:19.130226');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.130226', '2022-12-22 12:22:19.130226')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.136644', '2022-12-22 12:22:19.136644');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.136644', '2022-12-22 12:22:19.136644');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.136691', '2022-12-22 12:22:19.136691');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.136691', '2022-12-22 12:22:19.136691');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.136719', '2022-12-22 12:22:19.136719');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.136719', '2022-12-22 12:22:19.136719');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.136742', '2022-12-22 12:22:19.136742');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.136742', '2022-12-22 12:22:19.136742')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.142216', '2022-12-22 12:22:19.142216');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.142216', '2022-12-22 12:22:19.142216');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.142259', '2022-12-22 12:22:19.142259');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.142259', '2022-12-22 12:22:19.142259');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.142287', '2022-12-22 12:22:19.142287');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.142287', '2022-12-22 12:22:19.142287');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.142311', '2022-12-22 12:22:19.142311');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.142311', '2022-12-22 12:22:19.142311')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.147678', '2022-12-22 12:22:19.147678');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.147678', '2022-12-22 12:22:19.147678');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.147716', '2022-12-22 12:22:19.147716');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.147716', '2022-12-22 12:22:19.147716');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.147742', '2022-12-22 12:22:19.147742');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.147742', '2022-12-22 12:22:19.147742');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.147765', '2022-12-22 12:22:19.147765');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.147765', '2022-12-22 12:22:19.147765')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.152797', '2022-12-22 12:22:19.152797');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.152797', '2022-12-22 12:22:19.152797');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.152835', '2022-12-22 12:22:19.152835');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.152835', '2022-12-22 12:22:19.152835');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.152860', '2022-12-22 12:22:19.152860');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.152860', '2022-12-22 12:22:19.152860');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.152882', '2022-12-22 12:22:19.152882');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.152882', '2022-12-22 12:22:19.152882')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.158165', '2022-12-22 12:22:19.158165');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.158165', '2022-12-22 12:22:19.158165');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.158203', '2022-12-22 12:22:19.158203');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.158203', '2022-12-22 12:22:19.158203');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.158229', '2022-12-22 12:22:19.158229');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.158229', '2022-12-22 12:22:19.158229');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.158251', '2022-12-22 12:22:19.158251');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.158251', '2022-12-22 12:22:19.158251')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.163476', '2022-12-22 12:22:19.163476');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.163476', '2022-12-22 12:22:19.163476');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.163515', '2022-12-22 12:22:19.163515');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.163515', '2022-12-22 12:22:19.163515');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.163543', '2022-12-22 12:22:19.163543');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.163543', '2022-12-22 12:22:19.163543');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.163566', '2022-12-22 12:22:19.163566');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.163566', '2022-12-22 12:22:19.163566')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.168938', '2022-12-22 12:22:19.168938');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.168938', '2022-12-22 12:22:19.168938');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.168984', '2022-12-22 12:22:19.168984');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.168984', '2022-12-22 12:22:19.168984');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.169011', '2022-12-22 12:22:19.169011');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.169011', '2022-12-22 12:22:19.169011');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.169034', '2022-12-22 12:22:19.169034');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.169034', '2022-12-22 12:22:19.169034')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.175409', '2022-12-22 12:22:19.175409');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.175409', '2022-12-22 12:22:19.175409');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.175454', '2022-12-22 12:22:19.175454');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.175454', '2022-12-22 12:22:19.175454');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.175482', '2022-12-22 12:22:19.175482');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.175482', '2022-12-22 12:22:19.175482');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.175505', '2022-12-22 12:22:19.175505');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.175505', '2022-12-22 12:22:19.175505')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.180738', '2022-12-22 12:22:19.180738');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.180738', '2022-12-22 12:22:19.180738');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.180779', '2022-12-22 12:22:19.180779');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.180779', '2022-12-22 12:22:19.180779');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.180929', '2022-12-22 12:22:19.180929');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.180929', '2022-12-22 12:22:19.180929');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.180952', '2022-12-22 12:22:19.180952');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.180952', '2022-12-22 12:22:19.180952')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.7ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.186250', '2022-12-22 12:22:19.186250');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.186250', '2022-12-22 12:22:19.186250');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.186290', '2022-12-22 12:22:19.186290');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.186290', '2022-12-22 12:22:19.186290');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.186316', '2022-12-22 12:22:19.186316');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.186316', '2022-12-22 12:22:19.186316');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.186339', '2022-12-22 12:22:19.186339');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.186339', '2022-12-22 12:22:19.186339')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.191640', '2022-12-22 12:22:19.191640');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.191640', '2022-12-22 12:22:19.191640');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.191679', '2022-12-22 12:22:19.191679');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.191679', '2022-12-22 12:22:19.191679');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.191705', '2022-12-22 12:22:19.191705');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.191705', '2022-12-22 12:22:19.191705');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.191727', '2022-12-22 12:22:19.191727');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.191727', '2022-12-22 12:22:19.191727')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.197189', '2022-12-22 12:22:19.197189');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.197189', '2022-12-22 12:22:19.197189');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.197231', '2022-12-22 12:22:19.197231');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.197231', '2022-12-22 12:22:19.197231');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.197257', '2022-12-22 12:22:19.197257');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.197257', '2022-12-22 12:22:19.197257');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.197279', '2022-12-22 12:22:19.197279');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.197279', '2022-12-22 12:22:19.197279')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.6ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.202629', '2022-12-22 12:22:19.202629');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.202629', '2022-12-22 12:22:19.202629');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.202683', '2022-12-22 12:22:19.202683');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.202683', '2022-12-22 12:22:19.202683');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.202712', '2022-12-22 12:22:19.202712');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.202712', '2022-12-22 12:22:19.202712');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.202736', '2022-12-22 12:22:19.202736');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.202736', '2022-12-22 12:22:19.202736')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (0.5ms)[0m  [1m[31mDELETE FROM "categories";
+DELETE FROM "norests";
+DELETE FROM "posts";
+DELETE FROM "users";
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.207958', '2022-12-22 12:22:19.207958');
+INSERT INTO "categories" ("id", "name", "description", "display_in_navbar", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyText', 0, '2022-12-22 12:22:19.207958', '2022-12-22 12:22:19.207958');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.207999', '2022-12-22 12:22:19.207999');
+INSERT INTO "norests" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.207999', '2022-12-22 12:22:19.207999');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (980190962, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.208025', '2022-12-22 12:22:19.208025');
+INSERT INTO "posts" ("id", "name", "title", "content", "created_at", "updated_at") VALUES (298486374, 'MyString', 'MyString', 'MyText', '2022-12-22 12:22:19.208025', '2022-12-22 12:22:19.208025');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (980190962, '2022-12-22 12:22:19.208049', '2022-12-22 12:22:19.208049');
+INSERT INTO "users" ("id", "created_at", "updated_at") VALUES (298486374, '2022-12-22 12:22:19.208049', '2022-12-22 12:22:19.208049')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
