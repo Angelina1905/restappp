@@ -1,0 +1,50 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="foorm">
+
+  <div class="field">
+  <h4 class="form__block__title2">Имя</h4>
+  	<%= form.text_field :author %>
+  </div>
+
+  <div>
+  <h4 class="form__block__title2">Название</h4>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+      <h4 class="form__block__title2">Сколько времени вы отдыхали?</h4>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <h4 class="form__block__title2">Запишите впечатления и детали, если хочется</h4>
+      <%= form.cktext_area :content %>
+    </div>
+
+    <div class="field">
+          <h4 class="form__block__title2">Выберите, что вы делали?</h4>
+        <%= form.select :category_id, Category.pluck(:name, :id) %>
+    </div>
+
+  <div>
+  <h4 class="form__block__title2">Выберите картинку</h4>
+	<%= form.file_field :image %>
+</div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+</div>
+<% end %>

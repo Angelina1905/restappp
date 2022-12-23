@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Дни без отдыха</h1>
+
+<div class="poststables1">
+  <% @norests.each do |norest| %>
+    <%= render norest %>
+    <td><%= norest.content.html_safe %></td>
+    <p>
+      <%= link_to "Открыть", norest %>
+    </p>
+  <% end %>
+
+
+<%= link_to "Новая запись", new_norest_path %>
+<%= link_to "Назад", main_index_path %>
+</div>

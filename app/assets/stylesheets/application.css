@@ -1,0 +1,247 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @font-face {
+    font-family: 'TT Norms';
+    src: url('TTNorms-Regular.ttf');
+ }
+ @font-face {
+   font-family: 'TT Norrms';
+   src: url('TTNorms-Medium.ttf');
+ }
+ @font-face {
+   font-family: 'TT Norrrms';
+   src: url('TTNorms-Heavy.ttf');
+ }
+ @font-face {
+   font-family: 'TT Normms';
+   src: url('TTNorms-ExtraBold.ttf');
+ }
+ @font-face {
+   font-family: 'TT Normmms';
+   src: url('TTNorms-Bold.ttf');
+ }
+ @font-face {
+   font-family: 'TT Normss';
+   src: url('TTNorms-Black.ttf');
+ }
+ @font-face {
+    font-family: 'Practice-font';
+    src: url('Practice-font.otf');
+ }
+ body {
+    font: 14px "TT Norms";
+padding-left: 15px;
+    margin: 0vw;
+
+  }
+
+
+ .top_menu {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   width: 100%;
+   height: 60px;
+   margin-bottom: 40px;
+ }
+ .top_menu a {
+   margin: 0 20px;
+ }
+.maintext1 {
+  position: absolute;
+  width: 954px;
+  height: 82px;
+  left: 810px;
+  top: 450px;
+
+  font-family: 'TT Norms';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 82px;
+  identical to box height
+
+  text-align: center;
+
+}
+h1 {
+  position: absolute;
+  width: 954px;
+  height: 82px;
+  left: 395px;
+  top: 84px;
+
+  font-family: 'TT Normmms';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 82px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #000000;
+}
+.maintext2 {
+  position: absolute;
+  width: 954px;
+  height: 82px;
+  left: 785px;
+  top: 570px;
+
+  font-family: 'TT Norms';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 82px;
+  identical to box height
+
+  text-align: center;
+
+
+}
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+
+a:link {
+  color: #232E2F;
+}
+
+a:visited {
+  color: #232E2F;
+}
+
+a:focus {
+  border-bottom: 1px solid;
+  background: #BAE498;
+}
+
+
+.pic1 {
+  position: absolute;
+  width: 954px;
+  height: 82px;
+  left: 610px;
+  top: 450px;
+}
+.pic2 {
+  position: absolute;
+  width: 954px;
+  height: 82px;
+  left: 610px;
+  top: 570px;
+}
+.pic3 {
+  position: absolute;
+  width: 954px;
+  height: 82px;
+  left: 720px;
+  top: 84px;
+
+}
+.pic5{
+  position: absolute;
+  width: 954px;
+  height: 82px;
+  left: 395px;
+  top: 84px;
+
+}
+.pic6{
+  position: absolute;
+  width: 9px;
+  height: 82px;
+  left: 395px;
+  top: 84px;
+
+}
+.showimg {
+  position: absolute;
+top: 250px;
+left: 48px;
+}
+
+
+.posts__item {
+  display: flex;
+  flex-direction: column;
+  /* width: 390px; */
+  margin-right: 2vw;
+  margin-bottom: 6vw;
+  background: #FFFFFF;
+  border-radius: 9px;
+}
+
+.posts__item__text {
+  padding: 4px 20px;
+}
+
+.posts__item__text-theme {
+  font-family: Rothek;
+  padding-top: 17px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 15px;
+  color: #707070;
+}
+
+.posts__item__text-title {
+  font-family: Rothek;
+  color: #1B1B1B;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 120%;
+  padding-top: 7px;
+  padding-bottom: 17px;
+  color: #000000;
+}
+.table1 {
+  position: absolute;
+top: 250px;
+left: 48px;
+}
+.poststables {
+
+  color: #1B1B1B;
+
+  font-size: 18px;
+
+  padding-top: 170px;
+  padding-bottom: 17px;
+  padding-left: 30px;
+  color: #000000;
+}
+.poststables1 {
+
+  color: #1B1B1B;
+
+  font-size: 18px;
+
+  padding-top: 170px;
+  padding-bottom: 17px;
+    padding-left: 30px;
+  color: #000000;
+}
+.foorm{
+  padding-top: 180px;
+}
+.foorm1{
+  padding-top: 180px;
+}

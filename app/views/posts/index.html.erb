@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Отдых</h1>
+
+
+
+<div id="posts">
+  <div class="poststables">
+  <% @posts.each do |post| %>
+      <%= render post %>
+      <td><%= post.content.html_safe %></td>
+  <td><%= post.category.name %></td>
+  <td>  <%= link_to "Открыть", post %></td>
+  <% end %>
+</div>
+  </div>
+
+
+
+
+
+<%= link_to 'Создать категорию', new_category_path %>
+<%= link_to "Новый отдых", new_post_path %>
+<%= link_to "Назад", main_index_path %>

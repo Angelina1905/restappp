@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @norest %>
+
+
+<p>
+  <strong></strong>
+  <%= @norest.content.html_safe %>
+</p>
+
+<%= image_tag(@norest.image.url, alt: 'Image') if @norest.image? %>
+<%= link_to(image_tag(@norest.image.thumb.url, alt: 'Image'), @norest.image.url, target: '_blank') if @norest.image? %>
+<div>
+  <% if user_signed_in? %>
+  <%= link_to 'Edit', edit_norest_path(@norest) %> |
+  <% end %>
+  <%= link_to "Назад", norests_path %>
+
+  <%= button_to "Удалить", @norest, method: :delete %>
+</div>

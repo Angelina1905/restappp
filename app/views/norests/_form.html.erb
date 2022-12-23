@@ -1,0 +1,43 @@
+<%= form_with(model: norest) do |form| %>
+  <% if norest.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(norest.errors.count, "error") %> prohibited this norest from being saved:</h2>
+
+      <ul>
+        <% norest.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="foorm1">
+  <h4 class="form__block__title2">Имя</h4>
+    <%= form.text_field :author %>
+  </div>
+
+  <div class="field">
+  <div>
+<h4 class="form__block__title2">Название</h4>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+          <h4 class="form__block__title2">Настроение</h4>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+          <h4 class="form__block__title2">Почему не отдохнули?</h4>
+    <%= form.cktext_area :content %>
+  </div>
+
+  <div>
+  	<h4 class="form__block__title2">Выбрать фото</h4>
+  	<%= form.file_field :image %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+  </div>
+<% end %>
